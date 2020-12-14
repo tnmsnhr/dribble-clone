@@ -1,0 +1,175 @@
+.navbar {
+    background-color:#fff;
+    width: 100%;
+    display: block;
+    margin: 0 auto;
+    border-bottom: 2px solid $color-grey-light;
+
+    // &__content {
+    //     width: 100vw;
+    // }
+
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    &__brand {
+        float: left;
+        padding-top: 11px;
+
+        & a:link,
+        & a:active,
+        & a:visited {
+            font-size: 1.9rem;
+            font-family: 'Grand Hotel', cursive;
+            color: $color-black-2;
+            cursor: pointer;
+            text-decoration: none;
+            transition: color 0.1s ease-in;
+        }
+
+        & a:hover {
+            color: $color-black;
+        }
+    }
+
+    &__left {
+        float: left;
+        margin-left: 50px;
+        margin-top: 4px;
+
+        & i {
+            font-size: 0.6rem;
+        }
+    }
+
+    &__right {
+        float: right;
+    }
+
+    &__menu {
+        
+        &-item {
+            list-style: none;
+            display: inline-block;
+            padding: 1rem 0;
+            position: relative;
+
+            &:not(:last-child){
+                margin-right: 2rem;
+            }
+
+            a {
+                text-decoration: none;
+                color: $color-black;
+                font-weight: 400;
+                letter-spacing: -0.4px;
+
+                &:last-child {
+                    margin-left: 20px;
+                }
+                
+                &:hover {
+                    color: $color-black-2;
+                }
+            }
+
+            .form__group {
+                position: relative;
+    
+                & i {
+                    position: absolute;
+                    z-index: 10;
+                    top: 50%;
+                    left: 8px;
+                    transform: translateY(-50%);
+                }
+
+                .form__input {
+                    padding-left: 30px;
+                    width: 80%;
+                    transition: width 0.2s ease-in;
+                    display: block;
+
+                    &:focus {
+                        width: 90%;
+                        display: block;
+                    }
+                }
+            }
+
+            .navbar__user {
+                display: inline-block;
+                width: 40px;
+                position: absolute;
+                top: 20%;
+                left: -20px;
+                margin-right: 10px;
+                cursor: pointer;
+
+                &:hover .action__container{
+                    opacity: 1;
+                    visibility: visible;
+                    display: block;
+                }
+
+                & img {
+                    width: 40px;
+                    border-radius: 100px;
+                    display: inline-block;
+                    height: 40px;
+                    object-fit: cover;
+                }
+
+                .action__container {
+                    width: 250px;
+                    border-radius: 10px;
+                    padding: 30px 0px;
+                    
+                    background-color: rgba(255, 255, 255, 0.651);
+                    position: relative;
+                    z-index: 1000;
+                    top: 10px;
+                    right:6rem;
+                    opacity: 0;
+                    visibility: hidden;
+                    display: none;
+                    backdrop-filter: blur(30px);
+                    background-clip: padding-box;
+                    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+
+                    .action__items {
+                        list-style: none;
+                        
+                    }
+
+
+                    .action__item {
+                        padding: 10px;
+                        font-weight: 400;
+                        color: $color-black;
+
+                        &:hover {
+                            background-color: rgba(255, 255, 255, 0.301);
+                        }
+
+                        i {
+                            margin-right: 10px;
+                        }
+
+                        &:first-child, &:nth-child(3){
+                            border-bottom: 1px solid $color-grey-light-2;
+                        }
+
+                        a {
+                            text-decoration: none;
+                            color: $color-black;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

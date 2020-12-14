@@ -1,0 +1,44 @@
+.filter__subnav{
+
+    @include clearfix;
+
+    .filter__categories {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+
+        .category-lists {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+
+            .category {
+                list-style: none;
+            }
+
+            .category a{
+                list-style: none;
+                float: left;
+                font-weight: 400;
+                color: $color-grey-dark;
+                cursor: pointer;
+                text-decoration: none;
+                padding: 10px;
+                border-radius: 8px;
+            }
+
+            .activeFilter {
+                background-color: $color-grey-light;
+                color: $color-black;
+                font-weight: bold;
+                
+            }
+        
+        }
+
+    }
+
+    .filter__settings {
+        float: right;
+    }
+}
