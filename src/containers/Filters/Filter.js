@@ -7,11 +7,12 @@ class Filter extends Component {
 
     state={
         id:'all',
-        link:"/following/"
+        link:"/following/",
+        showFilter:false
     }
 
-    componentWillReceiveProps (nextProps){
-        console.log(this.props.location.pathname,nextProps.location.pathname)
+    componentDidMount(){
+
         if(this.props.location.pathname.includes('following')){
             this.setState({link:"/following/"})
         }
@@ -19,22 +20,68 @@ class Filter extends Component {
         if(this.props.location.pathname.includes('search')){
             this.setState({link:"/search/"})
         }
-
-        if (this.props.location.pathname === nextProps.location.pathname && 
-        this.props.location.search === nextProps.location.search
-        ) {return}
-
-        this.setState({filterText:nextProps.location.pathname.split('/')[2]})
-        console.log("from filter js",this.props.match)
-        this.props.onChangeFilter(nextProps.location.pathname.split('/')[2],this.props.match.path);
-        
     }
 
-   
+    // componentWillReceiveProps (nextProps){
+
+
+    //     if (this.props.location.pathname === nextProps.location.pathname && 
+    //     this.props.location.search === nextProps.location.search
+    //     ) {return}
+
+    //     this.setState({filterText:nextProps.location.pathname.split('/')[2]})
+
+    //     this.props.onChangeFilter(nextProps.location.pathname.split('/')[2],this.props.match.path);
+        
+    // }
+
+    componentDidUpdate(prevProps,prevState){
+        console.log(this.props.location.pathname.split('/')[2])
+        if(prevProps.location.pathname == this.props.location.pathname){
+            return;
+        } else {
+            this.props.onChangeFilter(this.props.location.pathname.split('/')[2],this.props.match.path);
+        }
+
+    }
+
+    showFilter= ()=>{
+        this.setState({showFilter:!this.state.showFilter})
+    }
 
     
 
     render() {
+
+        let filterContent= this.state.showFilter ? (<div className="filter__dropdown">
+        <div className="row">
+            <div className="col-1-of-4">
+                <div className="form__group">
+                    <label htmlFor="tags" className="form__label">Tags</label>
+                    <input id="tags" type="text" className="form__input " placeholder="Search by tag" />
+                </div>
+            </div>
+            <div className="col-1-of-4">
+                <div className="form__group">
+                    <label htmlFor="title" className="form__label">Title</label>
+                    <input id="title" type="text" className="form__input " placeholder="Search by title" />
+                </div>
+            </div>
+            <div className="col-1-of-4">
+                <div className="form__group">
+                    <label htmlFor="author" className="form__label">Author</label>
+                    <input id="author" type="text" className="form__input " placeholder="Search by author" />
+                </div>
+            </div>
+            <div className="col-1-of-4">
+                <div className="form__group">
+                    <label htmlFor="author" className="form__label">Author</label>
+                    <input id="author" type="text" className="form__input " placeholder="Search by author" />
+                </div>
+            </div>
+        </div>
+    </div>) : null;
+
         return (
             <div className="container">
                 <section className="filter__subnav margin-top-lg">
@@ -84,12 +131,13 @@ class Filter extends Component {
 
                         <div className="col-1-of-5">
                             <div className="filter__settings">
-                                <button className="btn btn-default">
-                                    <i className="fa fa-sort"></i> Filters
+                                <button className="btn btn-default" onClick={this.showFilter}>
+                                {this.state.showFilter ? <i className="fa fa-arrow-up"></i> : <i className="fa fa-arrow-down"></i>} Filters
                                 </button>
                             </div>
                         </div>
                     </div>
+                    {filterContent}
                 </section>
                 
             </div>

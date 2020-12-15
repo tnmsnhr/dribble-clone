@@ -88,8 +88,6 @@ export const updateUser= (userData, uid)=>{
         }
 
         
-        
-
         // updating userDoc in firestore
         console.log(userData.name)
 

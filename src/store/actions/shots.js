@@ -55,18 +55,21 @@ export const fetchShots = (filteredTags,pathname) =>{
                         dispatch(fetchShotSuccess(documents))
                     })
         }else {
+
             if(filteredTags==undefined)
                 filteredTags="all"
+
             projectFirestore.collection('shots')
                 .where("shotDetails.tags","array-contains",filteredTags)
                     .onSnapshot(snap=>{
+                        console.log("from shot action",filteredTags)
                         let documents = []
                         snap.forEach(doc=>{
                             documents.push({
                                 ...doc.data(), id: doc.id
                             })
                         })
-                        console.log("from shot action",filteredTags)
+
                         dispatch(fetchShotSuccess(documents))
                     })
         }
@@ -130,15 +133,6 @@ export const shotLiked=(shotId,uid)=>{
         
         const userRef=projectFirestore.collection('users')
         const shotRef=projectFirestore.collection('shots')
-
-        //increasing liked count in shot doc
-
-        shotRef.doc(shotId).get()
-            .then(doc=>{
-                shotRef.doc(shotId).update({
-                    "shotDetails.likeCount":doc.data().shotDetails.likeCount+1
-                })
-            })
 
         //adding shot id in user's likedShot array
         userRef.where("uid","==",uid).get()

@@ -14,6 +14,7 @@ const Card = (props) => {
     }
 
     const likeHandler =(e)=>{
+        
         e.stopPropagation()
 
         if(props.authDetails.loggedIn){

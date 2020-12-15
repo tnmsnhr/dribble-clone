@@ -594,6 +594,11 @@ body {
 .filter__subnav .filter__settings {
   float: right; }
 
+.filter__dropdown input {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.9rem; }
+
 .loader,
 .loader:before,
 .loader:after {
@@ -802,7 +807,8 @@ body {
         position: absolute;
         bottom: 0;
         right: 0;
-        font-weight: 400; }
+        font-weight: 400;
+        z-index: 10; }
         .login__form-right .form__content .signup__link a {
           text-decoration: none;
           color: #EA4C89;
@@ -855,7 +861,8 @@ body {
       position: absolute;
       bottom: 0;
       right: 0;
-      font-weight: 400; }
+      font-weight: 400;
+      z-index: 10; }
       .signup__form-right .form__content .signup__link a {
         text-decoration: none;
         color: #EA4C89;

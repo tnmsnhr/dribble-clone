@@ -11,6 +11,8 @@ class ShotLists extends Component {
         this.props.onFetchShots(this.props.match.params.filter, this.props.match.path)
     }
 
+
+
     render(){
 
         let rowContents = [];

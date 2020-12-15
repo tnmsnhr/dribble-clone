@@ -204,7 +204,7 @@ class NewShots extends Component {
                                         <label htmlFor="tags" className="form__label">Tags
                                             <i className="fa fa-question-circle form-title-info">
                                                 <div className="form__tooltip">
-                                                    <p className="form__tooltip-text">Start typing text, hit comma or tab to complete. Hit backspace to depete tag</p>
+                                                    <p className="form__tooltip-text">Start typing text, hit Enter to complete. Click the "x" button to delete tag</p>
                                                 </div>
                                             </i>
                                         </label>

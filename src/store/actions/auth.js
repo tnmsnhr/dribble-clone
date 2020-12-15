@@ -68,8 +68,8 @@ export const signIn = loginData =>{
             .then(({user})=>{
                 localStorage.setItem('uid', user.uid)
                 localStorage.setItem('token', user.refreshToken)
-                projectFirestore.collection('users').where("uid",'==',user.uid).get()
-                    .then(snap=>{
+                projectFirestore.collection('users').where("uid",'==',user.uid)
+                    .onSnapshot(snap=>{
                         snap.forEach(doc=>{
                             dispatch(loginSuccess(user.uid,user.refreshToken,doc.data()))
                             // dispatch(fetchUser(user.uid))
