@@ -36,14 +36,14 @@ class SignUp extends Component {
         return (
             <div className="signup__form">
                     <div className="signup__form-left">
-                        <div className="logo margin-bottom-sm"><Link to="/">dribbble</Link></div>
+                        <div className="logo margin-bottom-sm"><Link to="/">terribbble</Link></div>
                         <h1>Discover the world's top Designers & Creatives.</h1>
                     </div>
                     <div className="signup__form-right">
                         <div className="form__content">
                             <div className="signup__link">Already a member? <Link to="/auth/sign-in">Sign in</Link></div>
                             <div className="row">
-                                <h2 className="heading">Sign up to Dribbble</h2>
+                                <h2 className="heading">Sign up to Terribbble</h2>
                                 <form className="form margin-top-md" onSubmit={this.onSubmitHandler}>
                                     <div className="row">
                                         <div className="col-1-of-2">

@@ -24,13 +24,13 @@ class Profile extends Component {
     // }
 
     componentWillReceiveProps(nextProps){
-        console.log(this.props.location.pathname,nextProps.location.pathname)
+        console.log(this.props.match.params.uid)
 
         if (this.props.location.pathname === nextProps.location.pathname) 
             {return} 
 
         else {
-                this.props.onFetchUser(this.props.match.params.uid)
+                this.props.onFetchUser(this.props.location.pathname,this.props.match.params.uid)
             }
     }
     
@@ -59,7 +59,7 @@ class Profile extends Component {
                 <div className="row">
                     <div className="profile__nav">
                         <ul className="profile__nav-items">
-                            <li className="nav-item"><NavLink to="/">Shots</NavLink> <span className="count">17</span></li>
+                            <li className="nav-item"><NavLink to="/">Shots</NavLink> <span className="count">{this.props.userDetails.shots ? this.props.userDetails.shots.length:0}</span></li>
                             <li className="nav-item"><NavLink to="/">Liked Shots</NavLink> <span className="count">{this.props.userDetails.likedShots ? this.props.userDetails.likedShots.length:'0'}</span></li>
                             <li className="nav-item"><NavLink to="/">About</NavLink></li>
                         </ul>
@@ -79,7 +79,7 @@ const mapStateToProps = state =>{
 
 const mapDispatchToProps=dispatch=>{
     return {
-        onFetchUser: (uid=>{dispatch(fetchUser(uid))})
+        onFetchUser: (uid)=>{dispatch(fetchUser(uid))}
     }
 }
 

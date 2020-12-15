@@ -1,6 +1,6 @@
-
 import * as actionTypes from '../actions/actionTypes';
 import {projectStorage, projectFirestore, timeStamp} from '../../firebase/config';
+import firebase from 'firebase';
 
 export const uploadStart = ()=>{
     return {
@@ -24,6 +24,7 @@ export const UploadShot = ({file, shotDetails})=>{
         dispatch(uploadStart());
         const storageRef= projectStorage.ref(file.name)
         const collectionRef = projectFirestore.collection('shots');
+        const userRef = projectFirestore.collection('users');
 
         storageRef.put(file).on('state_changed', (snap)=>{
             let percentage = (snap.bytesTransferred / snap.totalBytes)*100;
@@ -34,12 +35,24 @@ export const UploadShot = ({file, shotDetails})=>{
             const url= await storageRef.getDownloadURL();
             imageUrl=url;
             const createdAt= timeStamp()
+
             collectionRef.add({
                 imageUrl,
                 shotDetails,
                 createdAt,
                 comments:[]
+            }).then(shot=>{
+                userRef.where("uid","==",shotDetails.userId).get()
+                    .then(snapShot=>{
+                        snapShot.forEach(doc=>{
+                            userRef.doc(doc.id).update({
+                                shots:firebase.firestore.FieldValue.arrayUnion(shot.id)
+                            })
+                        })
+                    })
             })
+
+            
 
             dispatch(uploadSuccess(shotDetails,imageUrl))
         })

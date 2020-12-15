@@ -37,14 +37,14 @@ class Login extends Component {
                     <p>There is no user record corresponding to this identifier. The user may have been deleted</p>
                 </div> : null }
                 <div className="login__form-left">
-                    <div className="logo margin-bottom-sm"><Link to="/">dribbble</Link></div>
+                    <div className="logo margin-bottom-sm"><Link to="/">terribbble</Link></div>
                     <h1>Discover the world's top Designers & Creatives.</h1>
                 </div>
                 <div className="login__form-right">
                     <div className="form__content">
                         <div className="signup__link">Not a member? <Link to="/auth/sign-up">Sign up now</Link></div>
                         <div className="row">
-                            <h2 className="heading">Sign in to Dribbble</h2>
+                            <h2 className="heading">Sign in to Terribbble</h2>
                             <form className="form margin-top-md" onSubmit={this.onSubmitHandler}>
                                 <div className="form__group margin-bottom-md">
                                     <label htmlFor="email" className="form__label">Your e-mail</label>

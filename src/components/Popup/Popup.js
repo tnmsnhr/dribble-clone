@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import Details from '../Details/Details';
 import {fetchUser} from '../../store/actions/users';
 
+
 class Popup extends Component{
 
     state= {
@@ -18,7 +19,8 @@ class Popup extends Component{
             profileImageUrl:''
         },
         show:false,
-        prevLocation:''
+        prevLocation:'',
+        imageStatus:"loading"
     }
 
     componentDidMount(){
@@ -92,6 +94,10 @@ class Popup extends Component{
         }
     }
 
+    imageLoaderHandler = ()=>{
+        this.setState({imageStatus:"loaded"})
+    }
+
     render(){
 
         let content =<Spinner />;
@@ -102,7 +108,9 @@ class Popup extends Component{
                     <div className="image__info margin-bottom-md">
                         <section className="user__area">
                             <div className="display__photo">
-                                <Link to={"/user/"+this.props.user.uid}><img src={this.props.user.profileImageUrl} alt="" /></Link>
+                                <Link to={"/user/"+this.props.user.uid}>
+                                    <img src={this.state.imageStatus=="loaded"? this.props.user.profileImageUrl : require("../../images/spin.gif")} onLoad={this.imageLoaderHandler} alt="profile image" />
+                                </Link>
                                 
                             </div>
                             <div className="user__details">

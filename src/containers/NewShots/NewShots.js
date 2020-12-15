@@ -16,7 +16,6 @@ class NewShots extends Component {
             description:'',
             userId:'',
             name:'',
-            likeCount:0,
             profileImageUrl:'',
             userLiked:[]
         },

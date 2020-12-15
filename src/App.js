@@ -42,6 +42,7 @@ class App extends Component {
           {this.props.location.pathname.includes('/auth/') ? null:<Navbar />}
           <Route path="/" exact component={Filter}/>
           <Route path="/user/:uid" component={Profile}/>
+          <Route path="/user/:filter" exact component={ShotLists}/>
           {this.props.isLoggedIn ? null: <><Route path="/auth/sign-in" exact component={Login}/><Route path="/auth/sign-up" exact component={SignUp}/></>}
           <Route path="/shots/shot-details/:id/:uid" exact component={Popup}/>
           <Route path="/following/" component={Filter}/>

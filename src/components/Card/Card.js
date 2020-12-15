@@ -7,6 +7,7 @@ const Card = (props) => {
 
     let shot=props.shot;
     const [redirect,setRedirect]=useState(null)
+    const [imageStatus, setImageStatus]=useState("loading")
    
 
     const clickHandler= ()=>{
@@ -30,6 +31,10 @@ const Card = (props) => {
         }
     }
 
+    const handleImageLoaded = ()=>{
+        setImageStatus("loaded")
+    }
+
     if(redirect)
         props.history.push(redirect)
     
@@ -47,8 +52,8 @@ const Card = (props) => {
                                 style={{color:shot.shotDetails.userLiked.includes(props.authDetails.uid)? "#EA4C89":null}}></i></button>
                         </div>
                     </div>
-                    <img src={shot.imageUrl} alt="" className="card__image"/>
-                    {/* <img src="" alt="" className="card__image"/> */}
+                    <img src={imageStatus=="loaded"? shot.imageUrl:require("../../images/loading.gif")} alt="" className="card__image" onLoad={handleImageLoaded}/>
+                    
                 </div>
                 <div className="shot__details">
                     <div className="user__informations">

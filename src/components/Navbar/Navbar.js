@@ -15,6 +15,11 @@ class Navbar extends Component{
     submitHandler=e=>{
         e.preventDefault()
     }
+
+    logOutHandler = ()=>{
+        this.props.onLogout()
+        this.props.history.push("/")
+    }
     
 
     render(){
@@ -51,7 +56,7 @@ class Navbar extends Component{
                                             <li className="action__item"><NavLink to={"/my-profile/"+this.props.authData.userId}>{this.props.authData.name}</NavLink></li>
                                             <li className="action__item"><NavLink to="/"><i className="fa fa-heart"></i> My Likes</NavLink></li>
                                             <li className="action__item"><NavLink to="/"><i className="fa fa-folder"></i> My Shots</NavLink></li>
-                                            <li className="action__item" onClick={this.props.onLogout}><a><i className="fa fa-power-off"></i> Logout</a></li>
+                                            <li className="action__item" onClick={this.logOutHandler}><a><i className="fa fa-power-off"></i> Logout</a></li>
                                         </ul>
                                     </div>
                                 </div>
