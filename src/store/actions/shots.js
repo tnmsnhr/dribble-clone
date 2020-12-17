@@ -27,9 +27,7 @@ export const fetchSingleShotSuccess = (shot, shotDetails, comments) =>{
 export const fetchShot = id=>{
 
     return dispatch=>{
-
         dispatch(fetchShotStart())
-
         projectFirestore.collection('shots').doc(id)
             .onSnapshot(doc=>{
                 dispatch(fetchSingleShotSuccess(doc.data(), doc.data().shotDetails, doc.data().comments))
@@ -37,20 +35,18 @@ export const fetchShot = id=>{
     }
 }
 
-export const fetchShots = (filteredTags,pathname) =>{
+export const fetchShots = (filterCriteria,pathname) =>{
     return dispatch=>{
 
         dispatch(fetchShotStart())
 
-        let initialState=true;
         let unsubscribe;
 
-        if(pathname.includes('/user/') || pathname.includes('/my-profile/')){
+        if((pathname.includes('/user/') || pathname.includes('/my-profile/')) && !pathname.includes('/liked-shots')){
             unsubscribe = projectFirestore.collection('shots')
-                .where("shotDetails.userId","==",filteredTags).get()
+                .where("shotDetails.userId","==",filterCriteria).get()
                     .then(snap=>{
                         let documents = []
-                        console.log(filteredTags)
                         snap.forEach(doc=>{
                             documents.push({
                                 ...doc.data(), id: doc.id
@@ -60,17 +56,30 @@ export const fetchShots = (filteredTags,pathname) =>{
 
                     })
 
+        } else if(pathname.includes('/liked-shots')){
+            
+            projectFirestore.collection('shots')
+                .where("shotDetails.userLiked","array-contains",filterCriteria).get()
+                    .then(snap=>{
+                        let documents = []
+                        snap.forEach(doc=>{
+                            documents.push({
+                                ...doc.data(), id: doc.id
+                            })
+                        })
+                        dispatch(fetchShotSuccess(documents))
+
+                    })
         }else {
 
-            if(filteredTags==undefined)
-                filteredTags="all"
+            if(filterCriteria==undefined)
+                filterCriteria="all"
             let unsubscribe;
 
             unsubscribe = projectFirestore.collection('shots')
-                .where("shotDetails.tags","array-contains",filteredTags).get()
+                .where("shotDetails.tags","array-contains",filterCriteria).get()
                     .then(snap=>{
 
-                        console.log(filteredTags)
                         let documents = []
                         snap.forEach(doc=>{
                             documents.push({

@@ -600,6 +600,20 @@ body {
   padding: 10px;
   font-size: 0.9rem; }
 
+.sub-filter-enter-done {
+  top: 0px;
+  opacity: 1; }
+
+.sub-filter-enter-active {
+  top: -30px;
+  opacity: 0; }
+
+.sub-filter-exit {
+  top: -30px; }
+
+.sub-filter-exit-active {
+  top: 0px; }
+
 .loader,
 .loader:before,
 .loader:after {
@@ -937,6 +951,8 @@ body {
         color: #9E9EA7;
         font-weight: 400;
         margin-left: 2px; }
+      .profile__nav-items .nav-item .ractiveLink {
+        color: #222222; }
 
 .details__container {
   width: 500px;

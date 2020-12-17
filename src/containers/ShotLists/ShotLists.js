@@ -7,14 +7,12 @@ import { fetchShots } from '../../store/actions/shots';
 class ShotLists extends Component {
 
     componentDidMount(){
-        console.log(this.props.match.params.filter, this.props.match.path)
         this.props.onFetchShots(this.props.match.params.filter, this.props.match.path)
     }
 
 
 
     render(){
-        console.log('from shotlist',this.props)
         let rowContents = [];
         let contents = this.props.shotLists.reduce((acc, shot, i) => {
             

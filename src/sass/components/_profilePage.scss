@@ -73,7 +73,7 @@
                 color: $color-grey-dark;
                 font-size: 1.1rem;
 
-                &:hover {
+                &:hover{
                     color: $color-black;
                 }
             }
@@ -82,6 +82,10 @@
                 color: $color-grey;
                 font-weight: 400;
                 margin-left: 2px;
+            }
+
+            .ractiveLink {
+                color: $color-black-2;
             }
         }
     }

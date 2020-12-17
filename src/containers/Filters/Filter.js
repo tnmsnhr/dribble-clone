@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { fetchShots } from '../../store/actions/shots';
+import Subfilter from './Subfilter';
+import { Transition } from 'react-transition-group';
+
 
 class Filter extends Component {
 
@@ -22,21 +25,8 @@ class Filter extends Component {
         }
     }
 
-    // componentWillReceiveProps (nextProps){
-
-
-    //     if (this.props.location.pathname === nextProps.location.pathname && 
-    //     this.props.location.search === nextProps.location.search
-    //     ) {return}
-
-    //     this.setState({filterText:nextProps.location.pathname.split('/')[2]})
-
-    //     this.props.onChangeFilter(nextProps.location.pathname.split('/')[2],this.props.match.path);
-        
-    // }
-
     componentDidUpdate(prevProps,prevState){
-        console.log(this.props.location.pathname.split('/')[2])
+
         if(prevProps.location.pathname == this.props.location.pathname){
             return;
         } else {
@@ -52,35 +42,9 @@ class Filter extends Component {
     
 
     render() {
+        console.log("rendered")
 
-        let filterContent= this.state.showFilter ? (<div className="filter__dropdown">
-        <div className="row">
-            <div className="col-1-of-4">
-                <div className="form__group">
-                    <label htmlFor="tags" className="form__label">Tags</label>
-                    <input id="tags" type="text" className="form__input " placeholder="Search by tag" />
-                </div>
-            </div>
-            <div className="col-1-of-4">
-                <div className="form__group">
-                    <label htmlFor="title" className="form__label">Title</label>
-                    <input id="title" type="text" className="form__input " placeholder="Search by title" />
-                </div>
-            </div>
-            <div className="col-1-of-4">
-                <div className="form__group">
-                    <label htmlFor="author" className="form__label">Author</label>
-                    <input id="author" type="text" className="form__input " placeholder="Search by author" />
-                </div>
-            </div>
-            <div className="col-1-of-4">
-                <div className="form__group">
-                    <label htmlFor="author" className="form__label">Author</label>
-                    <input id="author" type="text" className="form__input " placeholder="Search by author" />
-                </div>
-            </div>
-        </div>
-    </div>) : null;
+        let filterContent= <Subfilter in={this.state.showFilter}/>
 
         return (
             <div className="container">

@@ -20,7 +20,7 @@ const reducer = (state=initialState, action)=>{
 
         case actionTypes.USER_FETCH_SUCCESS:
             return {
-
+                ...state,
                 loading: false,
                 ...action.user
             }
@@ -43,13 +43,6 @@ const reducer = (state=initialState, action)=>{
                 loading:false,
                 ...action.userData
             }
-
-        // case actionTypes.SHOT_LIKED_SUCCESS:
-        //     const updatedState={...state}
-        //     return {
-        //         ...state,
-        //         ...updatedState
-        //     }
 
         default:
             return {...state}

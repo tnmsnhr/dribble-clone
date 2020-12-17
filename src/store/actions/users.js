@@ -15,9 +15,9 @@ export const fetchUserSuccess= user=>{
     }
 }
 
-export const fetchUser= userId=>{
+export const fetchUser= (userId)=>{
     return dispatch=>{
-
+        
         if(userId){
             dispatch(fetchUserStart())
             projectFirestore.collection('users').where("uid","==",userId).get()

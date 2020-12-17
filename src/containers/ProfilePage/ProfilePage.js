@@ -1,37 +1,29 @@
 import React, { Component } from 'react'
 import {connect} from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import {fetchUser} from '../../store/actions/users';
 
 class Profile extends Component {
+
+    state = {
+        redirect:null
+    }
 
     onClickHandler = ()=>{
         this.props.history.push('account/profile')
     }
 
     componentDidMount(){
-        console.log(this.props.match.params.uid)
         this.props.onFetchUser(this.props.match.params.uid)
     }
 
-    // shouldComponentUpdate(nextProps, nextState){
-    //     this.props.onFetchUser(this.props.match.params.uid)
-    //     return this.props==nextProps
-    // }
+    componentDidUpdate(prevProps,prevState){
+        if(prevProps.location.pathname == this.props.location.pathname){
+            return;
+        } else {
+            this.props.onFetchUser(this.props.location.pathname.split('/')[2]);
+        }
 
-    // componentDidUpdate(prevProps, prevState){
-    //     this.props.onFetchUser(this.props.match.params.uid)
-    // }
-
-    componentWillReceiveProps(nextProps){
-        console.log(this.props.match.params.uid)
-
-        if (this.props.location.pathname === nextProps.location.pathname) 
-            {return} 
-
-        else {
-                this.props.onFetchUser(this.props.location.pathname,this.props.match.params.uid)
-            }
     }
     
     render() {
@@ -59,9 +51,9 @@ class Profile extends Component {
                 <div className="row">
                     <div className="profile__nav">
                         <ul className="profile__nav-items">
-                            <li className="nav-item"><NavLink to="/">Shots</NavLink> <span className="count">{this.props.userDetails.shots ? this.props.userDetails.shots.length:0}</span></li>
-                            <li className="nav-item"><NavLink to="/">Liked Shots</NavLink> <span className="count">{this.props.userDetails.likedShots ? this.props.userDetails.likedShots.length:'0'}</span></li>
-                            <li className="nav-item"><NavLink to="/">About</NavLink></li>
+                            <li className="nav-item"><NavLink to={"/user/"+this.props.match.params.uid} exact activeClassName="ractiveLink">Shots</NavLink> <span className="count">{this.props.userDetails.shots ? this.props.userDetails.shots.length:0}</span></li>
+                            <li className="nav-item"><NavLink to={"/user/"+this.props.match.params.uid+"/liked-shots"} exact activeClassName="ractiveLink">Liked Shots</NavLink> <span className="count">{this.props.userDetails.likedShots ? this.props.userDetails.likedShots.length:'0'}</span></li>
+                            <li className="nav-item"><NavLink to="/" activeClassName="activeLink">About</NavLink></li>
                         </ul>
                     </div>
                 </div>

@@ -44,10 +44,37 @@
 }
 
 .filter__dropdown {
-    
+
     input {
         width: 100%;
         padding: 10px;
         font-size: 0.9rem;
     }
+}
+
+.filter-area {
+    // transition: all 0.3s ease-in;
+    // position: absolute;
+    // transition: all 0.3s ease-in;
+    // z-index: 200;
+    // width: 100%;
+    // background-color: #fff;
+}
+
+.sub-filter-enter-done {
+    top: 0px;
+    opacity: 1;
+}
+
+.sub-filter-enter-active {
+    top: -30px;
+    opacity: 0;
+}
+
+.sub-filter-exit {
+    top: -30px;
+}
+
+.sub-filter-exit-active {
+    top: 0px;
 }
