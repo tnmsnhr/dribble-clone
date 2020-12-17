@@ -14,7 +14,7 @@ class ShotLists extends Component {
 
 
     render(){
-
+        console.log('from shotlist',this.props)
         let rowContents = [];
         let contents = this.props.shotLists.reduce((acc, shot, i) => {
             

@@ -58,21 +58,34 @@ const reducer = (state=initialState, action) => {
             }
 
         case actionTypes.SHOT_LIKED_SUCCESS:
-            const updatedLikeState={...state}
-            updatedLikeState.likedShots.push(action.shotId)
+            let updatedLikeShots=[...state.shots]
+
+            updatedLikeShots.forEach(shot=>{
+                if(shot.id==action.shotId){
+                    shot.shotDetails.userLiked.push(action.uid)
+                }
+            })
+
+            // console.log(updatedShots)
+            // updatedLikeState.likedShots.push(action.shotId)
 
             return {
                 ...state,
-                ...updatedLikeState
+                ...updatedLikeShots
             }
 
         case actionTypes.SHOT_DISLIKED_SUCCESS:
-            const updatedDisLikeState={...state}
-            updatedDisLikeState.likedShots.pop()
+            let updatedDislikeShots=[...state.shots]
+
+            updatedDislikeShots.forEach(shot=>{
+                if(shot.id==action.shotId){
+                    shot.shotDetails.userLiked.pop()
+                }
+            })
 
             return {
                 ...state,
-                ...updatedDisLikeState
+                ...updatedDislikeShots
             }
         
 

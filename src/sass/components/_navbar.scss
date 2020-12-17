@@ -5,9 +5,9 @@
     margin: 0 auto;
     border-bottom: 2px solid $color-grey-light;
 
-    // &__content {
-    //     width: 100vw;
-    // }
+    @include respond-phone {
+        background-color: red;
+    }
 
     &::after {
         content: "";

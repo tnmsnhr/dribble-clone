@@ -188,6 +188,9 @@ body {
   display: block;
   margin: 0 auto;
   border-bottom: 2px solid #F3F3F4; }
+  @media (max-width: 600px) {
+    .navbar {
+      background-color: red; } }
   .navbar::after {
     content: "";
     display: table;

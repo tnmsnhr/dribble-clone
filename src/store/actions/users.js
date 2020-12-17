@@ -18,14 +18,18 @@ export const fetchUserSuccess= user=>{
 export const fetchUser= userId=>{
     return dispatch=>{
 
-        dispatch(fetchUserStart())
-        projectFirestore.collection('users').where("uid","==",userId).get()
-            .then(snap=>{
-                snap.forEach(doc=>{
-                    dispatch(fetchUserSuccess(doc.data()))
-                    
+        if(userId){
+            dispatch(fetchUserStart())
+            projectFirestore.collection('users').where("uid","==",userId).get()
+                .then(snap=>{
+                    snap.forEach(doc=>{
+                        dispatch(fetchUserSuccess(doc.data()))
+                        
+                    })
                 })
-            })
+        } else {
+            dispatch(fetchUserSuccess())
+        }
 
     }
 }

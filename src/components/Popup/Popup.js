@@ -98,8 +98,11 @@ class Popup extends Component{
         this.setState({imageStatus:"loaded"})
     }
 
-    render(){
+    componentWillUnmount(){
+        this.props.onFetchUser(null)
+    }
 
+    render(){
         let content =<Spinner />;
 
         if(this.props.shotDetails.userLiked){
@@ -109,7 +112,7 @@ class Popup extends Component{
                         <section className="user__area">
                             <div className="display__photo">
                                 <Link to={"/user/"+this.props.user.uid}>
-                                    <img src={this.state.imageStatus=="loaded"? this.props.user.profileImageUrl : require("../../images/spin.gif")} onLoad={this.imageLoaderHandler} alt="profile image" />
+                                    <img src={this.state.imageStatus=="loaded"? this.props.user.profileImageUrl : require("../../images/spin.gif")} onLoad={this.imageLoaderHandler}/>
                                 </Link>
                                 
                             </div>

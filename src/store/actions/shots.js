@@ -42,27 +42,35 @@ export const fetchShots = (filteredTags,pathname) =>{
 
         dispatch(fetchShotStart())
 
+        let initialState=true;
+        let unsubscribe;
+
         if(pathname.includes('/user/') || pathname.includes('/my-profile/')){
-            projectFirestore.collection('shots')
-                .where("shotDetails.userId","==",filteredTags)
-                    .onSnapshot(snap=>{
+            unsubscribe = projectFirestore.collection('shots')
+                .where("shotDetails.userId","==",filteredTags).get()
+                    .then(snap=>{
                         let documents = []
+                        console.log(filteredTags)
                         snap.forEach(doc=>{
                             documents.push({
                                 ...doc.data(), id: doc.id
                             })
                         })
                         dispatch(fetchShotSuccess(documents))
+
                     })
+
         }else {
 
             if(filteredTags==undefined)
                 filteredTags="all"
+            let unsubscribe;
 
-            projectFirestore.collection('shots')
-                .where("shotDetails.tags","array-contains",filteredTags)
-                    .onSnapshot(snap=>{
-                        console.log("from shot action",filteredTags)
+            unsubscribe = projectFirestore.collection('shots')
+                .where("shotDetails.tags","array-contains",filteredTags).get()
+                    .then(snap=>{
+
+                        console.log(filteredTags)
                         let documents = []
                         snap.forEach(doc=>{
                             documents.push({
@@ -71,7 +79,9 @@ export const fetchShots = (filteredTags,pathname) =>{
                         })
 
                         dispatch(fetchShotSuccess(documents))
+                        
                     })
+
         }
         
     }
@@ -149,7 +159,7 @@ export const shotLiked=(shotId,uid)=>{
         shotRef.doc(shotId).update({
             "shotDetails.userLiked":firebase.firestore.FieldValue.arrayUnion(uid)
         })
-        dispatch(shotLikeSuccess(shotId))   
+        dispatch(shotLikeSuccess(shotId,uid))   
     }
 }
 

@@ -82,7 +82,7 @@ class App extends Component {
             <Route path="/shots/new" exact component={NewShots}/>
 
             <Route path="/search/:filter" component={Search}/>
-            <Route path="/search/:filter" component={Filter}/>
+            {/* <Route path="/search/:filter" component={Filter}/> */}
             <Route path="/search/:filter" component={ShotLists}/>
 
             <Route path="/shots/shot-details/:id/:uid" exact component={Popup}/>

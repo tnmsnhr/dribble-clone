@@ -5,3 +5,14 @@
         display: table;
     }
 }
+
+// Mediaquery manager
+//0-600px Phone
+//600-900px Tablet Portrait
+//900-1200px Tablet Landscape
+//1200-1800px where our normal styles applied
+//1800px Big desktop
+
+@mixin respond-phone {
+    @media (max-width:600px) { @content }
+}

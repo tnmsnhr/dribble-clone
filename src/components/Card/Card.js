@@ -38,7 +38,6 @@ const Card = (props) => {
     if(redirect)
         props.history.push(redirect)
     
-
     return (
         <>
         <div className="col-1-of-4" key={shot.id}>
