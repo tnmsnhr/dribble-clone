@@ -29,8 +29,8 @@
 
             .activeFilter {
                 background-color: $color-grey-light;
-                color: $color-black;
-                font-weight: bold;
+                color: $color-black !important;
+                font-weight: bold !important;
                 
             }
         

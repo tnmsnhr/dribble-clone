@@ -40,6 +40,18 @@
             text-align: center;
             color: $color-grey;
 
+            a {
+                text-decoration: none;
+                color: $color-black;
+            }
+
+            i {
+                margin-right: 5px;
+                font-size: 1.2rem;
+                position: relative;
+                top: 2px;
+            }
+
             .shots {
                 font-weight: bold;
                 color: $color-black;

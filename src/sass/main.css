@@ -589,18 +589,30 @@ body {
       border-radius: 8px; }
     .filter__subnav .filter__categories .category-lists .activeFilter {
       background-color: #F3F3F4;
-      color: #3D3D3D;
-      font-weight: bold; }
+      color: #3D3D3D !important;
+      font-weight: bold !important; }
 
 .filter__subnav .filter__settings {
   float: right; }
 
-.filter__dropdown {
-  position: relative; }
-  .filter__dropdown input {
-    width: 100%;
-    padding: 10px;
-    font-size: 0.9rem; }
+.filter__dropdown input {
+  width: 100%;
+  padding: 10px;
+  font-size: 0.9rem; }
+
+.sub-filter-enter-done {
+  top: 0px;
+  opacity: 1; }
+
+.sub-filter-enter-active {
+  top: -30px;
+  opacity: 0; }
+
+.sub-filter-exit {
+  top: -30px; }
+
+.sub-filter-exit-active {
+  top: 0px; }
 
 .loader,
 .loader:before,
@@ -657,23 +669,20 @@ body {
 
 .popup__area {
   border-top-left-radius: 20px;
-  position: fixed;
-  top: 40px;
+  position: relative;
   z-index: 200;
-  width: 100vw;
-  height: 100%;
+  width: 100%;
+  height: calc(100vh - 40px);
   overflow-y: auto;
   background-color: #fff;
   left: 0; }
   .popup__area .left__sidebar {
-    overflow-x: auto; }
-  .popup__area .popup__left {
     width: 70%;
+    display: inline-block; }
+  .popup__area .popup__left {
     float: left;
     padding: 60px;
-    position: absolute;
-    top: 0;
-    left: 0; }
+    min-height: 100vh; }
     .popup__area .popup__left .image__info {
       display: flex;
       justify-content: space-between; }
@@ -939,6 +948,8 @@ body {
         color: #9E9EA7;
         font-weight: 400;
         margin-left: 2px; }
+      .profile__nav-items .nav-item .ractiveLink {
+        color: #222222; }
 
 .details__container {
   width: 500px;
@@ -1184,6 +1195,14 @@ body {
     padding-top: 30px;
     text-align: center;
     color: #9E9EA7; }
+    .footer__area .footer__content .bottom__footer a {
+      text-decoration: none;
+      color: #3D3D3D; }
+    .footer__area .footer__content .bottom__footer i {
+      margin-right: 5px;
+      font-size: 1.2rem;
+      position: relative;
+      top: 2px; }
     .footer__area .footer__content .bottom__footer .shots {
       font-weight: bold;
       color: #3D3D3D;

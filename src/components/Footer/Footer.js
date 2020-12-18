@@ -63,7 +63,7 @@ const Footer = () => {
                         <div className="row bottom__footer">
                             <div className="col-1-of-3">© 2020 Terribbble. All rights reserved.</div>
                             <div className="col-1-of-3">Made with ♥ remotely from India</div>
-                            <div className="col-1-of-3"><span className="shots">14,742,736</span> shots terribbbled</div>
+                            <div className="col-1-of-3"><a href="https://github.com/tnmsnhr/dribble-clone" target="_blank"><i className="fa fa-github"></i></a>  github repo</div>
                         </div>
                     </div>
                 </div>

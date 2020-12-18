@@ -7,6 +7,8 @@ import Comments from '../Comments/Comments';
 import { Link } from 'react-router-dom';
 import Details from '../Details/Details';
 import {fetchUser} from '../../store/actions/users';
+import Button from '../Button/Button';
+import Share from '../Share/Share';
 
 
 class Popup extends Component{
@@ -20,7 +22,8 @@ class Popup extends Component{
         },
         show:false,
         prevLocation:'',
-        imageStatus:"loading"
+        imageStatus:"loading",
+        showShare:false
     }
 
     componentDidMount(){
@@ -102,48 +105,71 @@ class Popup extends Component{
         this.props.onFetchUser(null)
     }
 
+    shareHandler = ()=>{
+        this.setState({showShare:!this.state.showShare})
+    }
+
     render(){
         let content =<Spinner />;
+        let iconStyle=null;
 
         if(this.props.shotDetails.userLiked){
             content=(
-                <div className="row">
-                    <div className="image__info margin-bottom-md">
-                        <section className="user__area">
-                            <div className="display__photo">
-                                <Link to={"/user/"+this.props.user.uid}>
-                                    <img src={this.state.imageStatus=="loaded"? this.props.user.profileImageUrl : require("../../images/spin.gif")} onLoad={this.imageLoaderHandler}/>
-                                </Link>
-                                
-                            </div>
-                            <div className="user__details">
-                                <h4>{this.props.shotDetails.title}</h4>
-                                <p>{this.props.shotDetails.name} &middot; Following &middot; <span className="hire">Hire Me</span></p>
-                            </div>
-                        </section>
-                        <section className="action__button">
-                            <button className="btn btn-grey">Save</button>
-                            <button className="btn btn-grey" onClick={this.likeDislikeHandler}>
-                                <i className="fa fa-heart" style={{color: this.props.shotDetails.userLiked.includes(this.props.authDetails.uid)? "#EA4C89":null}}></i>
-                            </button>
-                        </section>
-                    </div>
-    
+                <>
                     <div className="row">
-                        <div className="image__content">
-                            <img src={this.props.shotItem.imageUrl} alt="" />
-                            <p>
-                                {this.props.shotDetails.description}
-                            </p>
+                        <div className="image__info margin-bottom-md">
+                            <section className="user__area">
+                                <div className="display__photo">
+                                    <Link to={"/user/"+this.props.user.uid}>
+                                        <img src={this.state.imageStatus=="loaded"? this.props.user.profileImageUrl : require("../../images/spin.gif")} onLoad={this.imageLoaderHandler}/>
+                                    </Link>
+                                    
+                                </div>
+                                <div className="user__details">
+                                    <h4>{this.props.shotDetails.title}</h4>
+                                    <p>{this.props.shotDetails.name} &middot; Following &middot; <span className="hire">Hire Me</span></p>
+                                </div>
+                            </section>
+                            <section className="action__button">
+                                <button className="btn btn-grey">Save</button>
+                                <button className="btn btn-grey" onClick={this.likeDislikeHandler}>
+                                    <i className="fa fa-heart" style={{color: this.props.shotDetails.userLiked.includes(this.props.authDetails.uid)? "#EA4C89":null}}></i>
+                                </button>
+                            </section>
+                        </div>
+        
+                        <div className="row">
+                            <div className="image__content">
+                                <img src={this.state.imageStatus=="loaded"? this.props.shotItem.imageUrl : require("../../images/spin.gif")} onLoad={this.imageLoaderHandler} alt="" />
+                                <p>
+                                    {this.props.shotDetails.description}
+                                </p>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    <div className="row">
+                        <div className="user-details-section margin-top-xl">
+                            <Link to={"/user/"+this.props.user.uid}>
+                                <img src={this.state.imageStatus=="loaded"? this.props.user.profileImageUrl : require("../../images/spin.gif")} onLoad={this.imageLoaderHandler} />
+                            </Link>
+                            <h2 className="margin-top-lg">{this.props.user.name}</h2>
+                            <p className="margin-bottom-md">{this.props.user.introduction}</p>
+                            <Button btnType="primary">Hire Me</Button>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <h4>More by Tanmoy Roy</h4>
+                    </div>
+                </>
             )
+
+            iconStyle=this.props.shotDetails.userLiked.includes(this.props.authDetails.uid)? "#EA4C89":null
         }
 
         return (
             <>
                 <div>
+                    {this.state.showShare ? <Share clicked={this.shareHandler} url={this.props.shotItem.imageUrl}/>:null}
                     <Backdrop show={!this.state.show} />
                     <div className="popup__area">
                         <div className="left__sidebar">
@@ -157,9 +183,9 @@ class Popup extends Component{
                                 <div className="shot__sidebar">
                                     <section className="sidebar__button-area">
                                         <div className="button__left">
-                                            <button className="btn btn-default"><i className="fa fa-share-square"></i></button>
-                                            <button className="btn btn-default">
-                                                <i className="fa fa-heart"></i>
+                                            <button className="btn btn-default" onClick={this.shareHandler}><i className="fa fa-share-square"></i></button>
+                                            <button className="btn btn-default" onClick={this.likeDislikeHandler}>
+                                                <i className="fa fa-heart" style={{color: iconStyle}}></i>
                                             </button>
                                             <button className="btn btn-default"><i className="fa fa-folder"></i></button>
                                         </div>
