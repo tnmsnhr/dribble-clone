@@ -40,7 +40,7 @@ class App extends Component {
       <>
         <Switch>
           {this.props.location.pathname.includes('/auth/') ? null:<Navbar />}
-          <Route path="/" exact component={Filter}/>
+          {/* <Route path="/" exact component={Filter}/> */}
 
           <Route path="/user/:uid" component={Profile}/>
           <Route path="/user/:filter" exact component={ShotLists}/>
@@ -48,10 +48,10 @@ class App extends Component {
           {this.props.isLoggedIn ? null: <><Route path="/auth/sign-in" exact component={Login}/><Route path="/auth/sign-up" exact component={SignUp}/></>}
 
           <Route path="/shots/shot-details/:id/:uid" exact component={Popup}/>
-          <Route path="/following/" component={Filter}/>
+          {/* <Route path="/following/" component={Filter}/> */}
 
           <Route path="/search/:filter" component={Search}/>
-          <Route path="/search/:filter" component={Filter}/>
+          {/* <Route path="/search/:filter" component={Filter}/> */}
           <Route path="/search/:filter" component={ShotLists}/>
 
           {/* <Route path="/shots/shot-details/:id" exact component={ShotLists}/> */}
@@ -72,8 +72,8 @@ class App extends Component {
         <>
           <Switch>
             <Navbar />
-            <Route path="/" exact component={Filter}/>
-            <Route path="/following/" component={Filter}/>
+            {/* <Route path="/" exact component={Filter}/>
+            <Route path="/following/" component={Filter}/> */}
             
             <Route path="/user/account/profile" component={EditProfile}/>
             {/* <Route path="/user/account/profile" component={Profile}/> */}

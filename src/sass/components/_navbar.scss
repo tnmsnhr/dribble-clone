@@ -5,20 +5,12 @@
     margin: 0 auto;
     border-bottom: 2px solid $color-grey-light;
 
-    @include respond(big-desktop) {
-
+    @include respond(tab-land){
+        .navbar__toggle {
+            
+        }
     }
 
-    @include respond(tab-land) {
-
-    }
-
-    @include respond(tab-port) {
-
-    }
-
-    @include respond(phone) {
-    }
 
     &::after {
         content: "";
@@ -29,6 +21,26 @@
     &__brand {
         float: left;
         padding-top: 11px;
+
+        i {
+            display: none;
+            color: $color-grey-dark;
+        }
+
+        @include respond(tab-land) {
+            margin: 0 auto;
+            float: none;
+            text-align: center;
+
+            i {
+                display: inline-block;
+                float: left;
+                font-size: 1.5rem;
+                position: relative;
+                top: 6px;
+            }
+
+        }
 
         & a:link,
         & a:active,
@@ -51,6 +63,34 @@
         margin-left: 50px;
         margin-top: 4px;
 
+        .navbar__menu-item {
+            @include respond(tab-land){
+                display: block;
+                margin-right: 0 !important;
+
+                 a {
+                    font-weight: bold;
+                    font-size: 1.3rem;
+                    color: $color-grey-dark;
+                    margin-left: 0 !important;
+                 }
+
+                i {
+                    float: right;
+                    font-weight: bold;
+                    font-size: 1rem;
+                }
+            }
+        }
+
+
+        @include respond(tab-land) {
+            float: none;
+            width: 100% !important;
+            display: block !important;
+            margin-left: 0;
+        }
+
         & i {
             font-size: 0.6rem;
         }
@@ -58,6 +98,10 @@
 
     &__right {
         float: right;
+
+        @include respond(tab-land){
+            float: none;
+        }
     }
 
     &__menu {
@@ -67,6 +111,24 @@
             display: inline-block;
             padding: 1rem 0;
             position: relative;
+
+            @include respond(tab-land){
+                padding: 0.5rem 0 !important;
+                display: block;
+                width: 100%;
+
+                .form__group {
+                    border-bottom: 1px solid $color-grey-light-2;
+                }
+
+                a {
+                    margin-left: 0 !important;
+                }
+
+                .btn {
+
+                }
+            }
 
             &:not(:last-child){
                 margin-right: 2rem;
@@ -85,6 +147,7 @@
                 &:hover {
                     color: $color-black-2;
                 }
+
             }
 
             .form__group {
@@ -96,6 +159,13 @@
                     top: 50%;
                     left: 8px;
                     transform: translateY(-50%);
+
+                }
+
+                @include respond(tab-land){
+                    i {
+                        top: 33% !important;
+                    }
                 }
 
                 .form__input {
@@ -104,9 +174,19 @@
                     transition: width 0.2s ease-in;
                     display: block;
 
+                    @include respond(tab-land){
+                        width: 100%;
+                        margin-bottom: 1.5rem;
+                        font-size: 1.2rem;
+                    }
+
                     &:focus {
                         width: 90%;
                         display: block;
+
+                        @include respond(tab-land){
+                            width: 100%;
+                        }
                     }
                 }
             }
@@ -120,6 +200,11 @@
                 margin-right: 10px;
                 cursor: pointer;
 
+                @include respond(tab-land){
+                    position: unset;
+                    width: 100%;
+                }
+
                 &:hover .action__container{
                     opacity: 1;
                     visibility: visible;
@@ -132,13 +217,17 @@
                     display: inline-block;
                     height: 40px;
                     object-fit: cover;
+
+                    @include respond(tab-land){
+                        width: 50px;
+                        height: 50px;
+                    }
                 }
 
                 .action__container {
                     width: 250px;
                     border-radius: 10px;
                     padding: 30px 0px;
-                    
                     background-color: #fff;
                     position: relative;
                     z-index: 1000;
@@ -150,6 +239,52 @@
                     // backdrop-filter: blur(30px);
                     // background-clip: padding-box;
                     box-shadow: 0px 0px 2rem rgba(0, 0, 0, 0.2);
+
+                    @include respond(tab-land){
+                        border-radius: 10px;
+                        padding: 30px 0px;
+                        background-color: #fff;
+                        position: relative;
+                        z-index: 1000;
+                        top: 0;
+                        right:0;
+                        opacity: 1;
+                        visibility: visible;
+                        display: block;
+                        box-shadow: none;
+                        width: 100%;
+
+                        .action__items {
+                            span {
+                                display: none !important;
+                            }
+
+                            .user__name{
+                                position: absolute;
+                                top: -55px;
+                                left: 50px;
+
+                                a {
+                                    font-weight: bold;
+                                }
+                                
+                            }
+                        }
+
+                        .action__item{
+                            font-size: 1.2rem;
+                            width: 200px;
+                            float: left;
+
+                            &:hover {
+                                background-color: transparent !important;
+                                a {
+                                    color: $color-black;
+                                }
+                            }
+                        }
+   
+                    }
 
                     .action__items {
                         list-style: none;
@@ -181,13 +316,6 @@
                         i {
                             margin-right: 10px;
                         }
-
-                        // &:first-child, &:nth-child(3){
-                        //     border-bottom: 1px solid $color-grey-light-2;
-                        // }
-
-                        
-
                         a {
                             text-decoration: none;
                             color: lighten($color-black,20);

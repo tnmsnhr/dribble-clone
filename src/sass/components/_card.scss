@@ -2,6 +2,18 @@
     height: 33vh;
     width: 100%;
     position: relative;
+
+    @include respond(tab-land){
+        height: 55vh;
+    }
+
+    @include respond(tab-port){
+        height: 48vh;
+    }
+
+    @include respond(phone){
+        height: 55vh;
+    }
 }
 
 .card {
