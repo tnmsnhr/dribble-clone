@@ -17,7 +17,7 @@ const Share = (props) => {
                         <h2>Share this with your social Community</h2>
                     </div>
                     <div className="share__area">
-                        <FacebookShareButton  quote="demo share" url={props.url}>
+                        <FacebookShareButton  quote={`Artwork by ${props.name}`} url={props.url} hashtag={"#dribbble_clone"}>
                             <FacebookIcon size={"2rem"} round/>
                         </FacebookShareButton>
                         &nbsp;

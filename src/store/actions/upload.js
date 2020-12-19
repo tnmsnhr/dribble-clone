@@ -58,3 +58,38 @@ export const UploadShot = ({file, shotDetails})=>{
         })
     }
 }
+
+export const updateShotStart = ()=>{
+    return {
+        type: actionTypes.SHOT_UPDATE_START
+    }
+}
+
+export const updateShotFailed = error=>{
+    return {
+        type: actionTypes.SHOT_UPDATE_FAILED,
+        error: error
+    }
+}
+
+export const updateShotSuccess = ()=>{
+    return {
+        type: actionTypes.SHOT_UPDATE_SUCCESS
+    }
+}
+
+export const updateShot = (shotDetails,shotId)=>{
+    return dispatch=>{
+
+        dispatch(updateShotStart())
+
+        const collectionRef = projectFirestore.collection('shots');
+
+        collectionRef.doc(shotId).update({
+            "shotDetails":{
+                ...shotDetails
+            }
+        })
+
+    }
+}

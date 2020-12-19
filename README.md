@@ -19,3 +19,4 @@ Tried to create replica of **dribbble.com**
 5. Like/Dislike shot
 6. Search basis on tag
 6. Filter based on tag
+7. You can edit your shot

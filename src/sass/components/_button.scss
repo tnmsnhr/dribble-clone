@@ -16,6 +16,11 @@
         cursor: default;
     }
 
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
     &-default {
         border: 1px solid $color-grey-light-2;
         background-color: #fff;

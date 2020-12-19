@@ -147,6 +147,11 @@ class Popup extends Component{
                             </div>
                         </div>
                     </div>
+                    {this.props.authDetails.uid === this.props.match.params.uid ?
+                    <div className="row modify__button">
+                        <Button btnType="default"><Link to={"/shots/edit/"+this.props.match.params.id}>Edit</Link></Button>
+                        <Button btnType="primary">Delete</Button>
+                    </div> :null }
                     <div className="row">
                         <div className="user-details-section margin-top-xl">
                             <Link to={"/user/"+this.props.user.uid}>
@@ -154,7 +159,7 @@ class Popup extends Component{
                             </Link>
                             <h2 className="margin-top-lg">{this.props.user.name}</h2>
                             <p className="margin-bottom-md">{this.props.user.introduction}</p>
-                            <Button btnType="primary">Hire Me</Button>
+                            <Button btnType="primary"><i className="fa fa-envelope"></i> Hire Me</Button>
                         </div>
                     </div>
                     <div className="row">
@@ -169,7 +174,7 @@ class Popup extends Component{
         return (
             <>
                 <div>
-                    {this.state.showShare ? <Share clicked={this.shareHandler} url={this.props.shotItem.imageUrl}/>:null}
+                    {this.state.showShare ? <Share clicked={this.shareHandler} url={this.props.shotItem.imageUrl} name={this.props.shotDetails.name}/>:null}
                     <Backdrop show={!this.state.show} />
                     <div className="popup__area">
                         <div className="left__sidebar">

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {UploadShot} from '../../store/actions/upload';
+import {UploadShot, updateShot} from '../../store/actions/upload';
+import {fetchShot} from '../../store/actions/shots';
 import {authCheckState} from '../../store/actions/auth';
 import { Redirect } from 'react-router-dom';
 import Button from '../../components/Button/Button';
@@ -16,7 +17,6 @@ class NewShots extends Component {
             description:'',
             userId:'',
             name:'',
-            profileImageUrl:'',
             userLiked:[]
         },
         redirectTo:null,
@@ -95,13 +95,18 @@ class NewShots extends Component {
 
     componentDidMount(){
         this.props.onTryAutoLogin()
-        this.setState({
-            ...this.state,
-            shotDetails:{
-                ...this.state.shotDetails,
-                profileImageUrl:this.props.profileImageUrl
-            }
-        })
+
+        if(this.props.location.pathname.includes("/edit/")){
+            this.props.onFetchShot(this.props.match.params.shotid)
+            console.log(this.props.match.params.shotid)
+            this.setState({
+                ...this.state,
+                shotDetails:{
+                    ...this.props.shot.shotDetails
+                },
+                tagList:[...this.props.shot.shotDetails.tags]
+            })
+        }
     }
 
     tagHanlder =event=>{
@@ -124,7 +129,22 @@ class NewShots extends Component {
         })
     }
 
+    updateHanlder = ()=>{
+
+        this.setState({
+            redirectTo:"/shots/shot-details/"+this.props.match.params.shotid+"/"+this.props.shot.shotDetails.userId
+        })
+        
+        const updatedShotDetails={...this.state.shotDetails}
+        updatedShotDetails.tags=[...this.state.tagList]
+
+        this.props.onUpdateShot(updatedShotDetails,this.props.match.params.shotid)
+    }
+
     render() {
+
+        console.log(this.state)
+
         let popup=null;
         if(!this.state.isValid){
             popup= (
@@ -133,7 +153,60 @@ class NewShots extends Component {
                 </>
             )
         }
-        console.log(this.state)
+
+        let imagePreviewContent=(
+                <div className="upload__image-area">
+                    <div>
+                        <div className="row">
+                            <div className="col-1-of-3">
+                                <div className="image__type">
+                                    <div className="image__type--left"><i className="fa fa-file-image-o"></i></div>
+                                    <div className="image__type--right">
+                                        <h4 className="image__type--heading">High resolution images</h4>
+                                        <p className="image__type--desc">PNG, JPG, JPEG</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="col-1-of-3">
+                                <div className="image__type">
+                                    <div className="image__type--left"><i className="fa fa-file-video-o"></i></div>
+                                    <div className="image__type--right">
+                                        <h4 className="image__type--heading">Animated GIFs</h4>
+                                        <p className="image__type--desc">400x300, 800x600</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="col-1-of-3">
+                                <div className="image__type">
+                                    <div className="image__type--left"><i className="fa fa-video-camera"></i></div>
+                                    <div className="image__type--right">
+                                        <h4 className="image__type--heading">Videos</h4>
+                                        <p className="image__type--desc">MP4, 4:3, 24 seconds</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <label htmlFor="upload-file" className="upload__image-label">
+                            <i className="fa fa-cloud-upload"></i>
+                            <div className="upload__image-hint">
+                                <h4><span>browse</span> to choose a file</h4>
+                            </div>
+                        </label>
+                        <input type="file" className="upload__image-input" id="upload-file" accept="image/png,image/jpg,image/jpeg" onChange={this.onChangeHandler}/>
+                    </div>
+                </div>
+        )
+
+        if(this.props.location.pathname.includes("/edit/")){
+            imagePreviewContent=(
+                <div className="upload__image-preview">
+                    <img src={this.props.shot.imageUrl} />
+                </div>
+            )
+        }
+
         return (
             <div className="media__type">
                 {/* {popup} */}
@@ -145,50 +218,7 @@ class NewShots extends Component {
                                 <div className="upload__image-preview">
                                     <button className="delete-image" onClick={this.deleteHandler}><i className="fa fa-trash"></i></button>
                                     <img src={this.state.imageUrl} />
-                                </div>:
-
-                            <div className="upload__image-area">
-                                <div>
-                                    <div className="row">
-                                        <div className="col-1-of-3">
-                                            <div className="image__type">
-                                                <div className="image__type--left"><i className="fa fa-file-image-o"></i></div>
-                                                <div className="image__type--right">
-                                                    <h4 className="image__type--heading">High resolution images</h4>
-                                                    <p className="image__type--desc">PNG, JPG, JPEG</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="col-1-of-3">
-                                            <div className="image__type">
-                                                <div className="image__type--left"><i className="fa fa-file-video-o"></i></div>
-                                                <div className="image__type--right">
-                                                    <h4 className="image__type--heading">Animated GIFs</h4>
-                                                    <p className="image__type--desc">400x300, 800x600</p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="col-1-of-3">
-                                            <div className="image__type">
-                                                <div className="image__type--left"><i className="fa fa-video-camera"></i></div>
-                                                <div className="image__type--right">
-                                                    <h4 className="image__type--heading">Videos</h4>
-                                                    <p className="image__type--desc">MP4, 4:3, 24 seconds</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <label htmlFor="upload-file" className="upload__image-label">
-                                        <i className="fa fa-cloud-upload"></i>
-                                        <div className="upload__image-hint">
-                                            <h4><span>browse</span> to choose a file</h4>
-                                        </div>
-                                    </label>
-                                    <input type="file" className="upload__image-input" id="upload-file" accept="image/png,image/jpg,image/jpeg" onChange={this.onChangeHandler}/>
-                                </div>
-                            </div>}
+                                </div>:imagePreviewContent}
                             
                         </div>
                         <div className="col-1-of-3">
@@ -196,7 +226,9 @@ class NewShots extends Component {
                                 <form action="#" className="form">
                                     <div className="form__group margin-bottom-md">
                                         <label htmlFor="title" className="form__label">Title</label>
-                                        <input id="title" type="text" className="form__input" placeholder="Add a Title" onChange={this.onInputChangeHandler} required />
+                                        {this.props.location.pathname.includes("/edit/") ?
+                                        <input id="title" type="text" defaultValue={this.state.shotDetails.title} className="form__input" placeholder="Add a Title" onChange={this.onInputChangeHandler} required />:
+                                        <input id="title" type="text"  className="form__input" placeholder="Add a Title" onChange={this.onInputChangeHandler} required />}
                                     </div>
 
                                     <div className="form__group margin-bottom-md">
@@ -250,8 +282,10 @@ class NewShots extends Component {
                                                 </div>
                                             </i>
                                         </label>
+                                        {this.props.location.pathname.includes("/edit/") ? <textarea type="text" defaultValue={this.state.shotDetails.description} className="form__input-desc" name="size" id="description" 
+                                            placeholder="Tell us about your process and how you arrived at thui design" onChange={this.onInputChangeHandler}></textarea>:
                                         <textarea type="text" className="form__input-desc" name="size" id="description" 
-                                            placeholder="Tell us about your process and how you arrived at thui design" onChange={this.onInputChangeHandler}></textarea>
+                                            placeholder="Tell us about your process and how you arrived at thui design" onChange={this.onInputChangeHandler}></textarea>}
                                     </div>
                                 </form>
                             </div>
@@ -264,7 +298,9 @@ class NewShots extends Component {
                         </div>
                         <div className="media__type-button-area--right">
                             <Button btnType='default'>Schedule</Button>
-                            <Button btnType='primary' clicked={this.onSubmitHanlder} disabled={this.state.isValid || this.props.loading}>{this.props.loading? "Uploading...":"Publish"}</Button>
+                            {this.props.location.pathname.includes("/edit/")?
+                            <Button btnType='primary' clicked={this.updateHanlder} disabled={this.state.isValid || this.props.loading}>{this.props.loading? "Updating...":"Update"}</Button>:
+                            <Button btnType='primary' clicked={this.onSubmitHanlder} disabled={this.state.isValid || this.props.loading}>{this.props.loading? "Uploading...":"Publish"}</Button>}
                         </div>
                     </div>
                 </section>
@@ -277,14 +313,16 @@ class NewShots extends Component {
 const mapStateToProps = state=>{
     return {
         loading: state.shotsState.loading,
-        profileImageUrl:state.userState.profileImageUrl
+        shot: state.shotsState.selectedShot
     }
 }
 
 const mapDispatchToProps = dispatch=>{
     return{
         onUploadShot: (file)=>dispatch(UploadShot(file)),
-        onTryAutoLogin: ()=>dispatch(authCheckState())
+        onTryAutoLogin: ()=>dispatch(authCheckState()),
+        onFetchShot: (id)=>{dispatch(fetchShot(id))},
+        onUpdateShot: (shotDetails, shotId)=>{dispatch(updateShot(shotDetails, shotId))}
     }
 }
 

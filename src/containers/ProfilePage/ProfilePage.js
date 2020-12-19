@@ -14,7 +14,11 @@ class Profile extends Component {
     }
 
     componentDidMount(){
-        this.props.onFetchUser(this.props.match.params.uid)
+        if(this.props.location.pathname.includes('account/profile')){
+            this.props.onFetchUser(this.props.authDetails.uid)
+        } else {
+            this.props.onFetchUser(this.props.match.params.uid)
+        }
     }
 
     componentDidUpdate(prevProps,prevState){
@@ -24,6 +28,11 @@ class Profile extends Component {
             this.props.onFetchUser(this.props.location.pathname.split('/')[2]);
         }
 
+    }
+
+    componentWillUnmount(){
+        console.log("profile page unmounted")
+        this.props.onFetchUser("");
     }
     
     render() {

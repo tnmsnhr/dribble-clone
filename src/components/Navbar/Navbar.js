@@ -54,8 +54,13 @@ class Navbar extends Component{
                                     <div className="action__container">
                                         <ul className="action__items">
                                             <li className="action__item"><NavLink to={"/user/"+this.props.authData.userId}>{this.props.authData.name}</NavLink></li>
+                                            <span></span>
+                                            <li className="action__item"><NavLink to="/user/account/profile">Edit Profile</NavLink></li>
+                                            <li className="action__item"><NavLink to="/">Edit Work Availability</NavLink></li>
+                                            <span></span>
                                             <li className="action__item"><NavLink to={"/user/"+this.props.authData.userId+"/liked-shots"}><i className="fa fa-heart"></i> My Likes</NavLink></li>
                                             <li className="action__item"><NavLink to={"/user/"+this.props.authData.userId}><i className="fa fa-folder"></i> My Shots</NavLink></li>
+                                            <span></span>
                                             <li className="action__item" onClick={this.logOutHandler}><a><i className="fa fa-power-off"></i> Logout</a></li>
                                         </ul>
                                     </div>
