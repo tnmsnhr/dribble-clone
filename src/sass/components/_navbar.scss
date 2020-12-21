@@ -5,13 +5,6 @@
     margin: 0 auto;
     border-bottom: 2px solid $color-grey-light;
 
-    @include respond(tab-land){
-        .navbar__toggle {
-            
-        }
-    }
-
-
     &::after {
         content: "";
         display: table;
@@ -38,6 +31,7 @@
                 font-size: 1.5rem;
                 position: relative;
                 top: 6px;
+                cursor: pointer;
             }
 
         }
@@ -80,6 +74,7 @@
                     font-weight: bold;
                     font-size: 1rem;
                 }
+
             }
         }
 
@@ -125,8 +120,8 @@
                     margin-left: 0 !important;
                 }
 
-                .btn {
-
+                .btn:first-child {
+                    margin-right: 1rem !important;
                 }
             }
 
@@ -230,7 +225,7 @@
                     padding: 30px 0px;
                     background-color: #fff;
                     position: relative;
-                    z-index: 1000;
+                    z-index: 10;
                     top: 10px;
                     right:6rem;
                     opacity: 0;
@@ -245,7 +240,7 @@
                         padding: 30px 0px;
                         background-color: #fff;
                         position: relative;
-                        z-index: 1000;
+                        z-index: 10;
                         top: 0;
                         right:0;
                         opacity: 1;
@@ -325,4 +320,11 @@
             }
         }
     }
+
+    @include respond(desktop){
+        .navbar__toggle {
+            display: block !important;
+        }
+    }
+
 }

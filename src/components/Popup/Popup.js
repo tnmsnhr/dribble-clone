@@ -23,7 +23,8 @@ class Popup extends Component{
         show:false,
         prevLocation:'',
         imageStatus:"loading",
-        showShare:false
+        showShare:false,
+        showComment:false
     }
 
     componentDidMount(){
@@ -107,6 +108,12 @@ class Popup extends Component{
 
     shareHandler = ()=>{
         this.setState({showShare:!this.state.showShare})
+    }
+
+    commentHandler = ()=>{
+        this.setState({
+            showComment:!this.state.showComment
+        })
     }
 
     render(){
@@ -193,6 +200,7 @@ class Popup extends Component{
                                                 <i className="fa fa-heart" style={{color: iconStyle}}></i>
                                             </button>
                                             <button className="btn btn-default"><i className="fa fa-folder"></i></button>
+                                            <button className="btn btn-default comment-button" onClick={this.commentHandler}><i className="fa fa-comment"></i></button>
                                         </div>
         
                                         <div className="button__right">
@@ -201,39 +209,39 @@ class Popup extends Component{
                                     </section>
                                 </div>
                             </div>
-        
-                            <div className="row">
-                                {localStorage.getItem('uid') ?
-                                <form className="form" onSubmit={this.onSubmitHandler}>
-                                    <div className="form__group margin-bottom-md">
-                                        <label htmlFor="description" className="form__label">Feedback</label>
-                                        <textarea 
-                                            type="text" 
-                                            className="form__input-desc" 
-                                            name="size" 
-                                            id="description" 
-                                            placeholder="Share your thoughts" 
-                                            onChange={this.onChangeHandler}
-                                            value={this.state.comment.message}
-                                            required></textarea>
-                                        <button className="btn btn-primary post-button margin-top-sm">Post</button>
+                            <div className={["comment__area",this.state.showComment ? "comment__shown":null].join(' ')}>
+                                <div className="row">
+                                    {localStorage.getItem('uid') ?
+                                    <form className="form" onSubmit={this.onSubmitHandler}>
+                                        <div className="form__group margin-bottom-md margin-top-md">
+                                            <label htmlFor="description" className="form__label">Feedback</label>
+                                            <textarea 
+                                                type="text" 
+                                                className="form__input-desc" 
+                                                name="size" 
+                                                id="description" 
+                                                placeholder="Share your thoughts" 
+                                                onChange={this.onChangeHandler}
+                                                value={this.state.comment.message}
+                                                required></textarea>
+                                            <button className="btn btn-primary post-button margin-top-sm">Post</button>
+                                        </div>
+                                    </form>
+                                    :
+                                    <div className="auth__suggestion margin-bottom-md">
+                                        <div className="row">
+                                            <img src='https://dribbble.com/assets/packs/media/shot-reskin/comments-signup-avatars-ea2f52fd.png' />
+                                            <h2>Join the discussion</h2>
+                                            <p className="margin-bottom-md">Looking to share your feedback and join in on the conversation?</p>
+                                            <Link to="/auth/sign-in"><button className="btn btn-primary">Sign up to discuss</button></Link>
+                                        </div>
                                     </div>
-                                </form>
-                                :
-                                <div className="auth__suggestion margin-bottom-md">
-                                    <div className="row">
-                                        <img src='https://dribbble.com/assets/packs/media/shot-reskin/comments-signup-avatars-ea2f52fd.png' />
-                                        <h2>Join the discussion</h2>
-                                        <p className="margin-bottom-md">Looking to share your feedback and join in on the conversation?</p>
-                                        <Link to="/auth/sign-in"><button className="btn btn-primary">Sign up to discuss</button></Link>
-                                    </div>
+                                    }
                                 </div>
-                                }
-                            </div>
-    
-                            <div className="row">
-                                {this.props.comments ? <Comments comments={this.props.comments}/>:null}
-                                
+        
+                                <div className="row">
+                                    {this.props.comments ? <Comments comments={this.props.comments}/>:null}
+                                </div>
                             </div>
                         </div>
                         {this.state.show ? <Details shotItem={this.props.shotItem} show={this.state.show} clicked={this.clickHandler}/>:null}

@@ -157,33 +157,35 @@ class NewShots extends Component {
         let imagePreviewContent=(
                 <div className="upload__image-area">
                     <div>
-                        <div className="row">
-                            <div className="col-1-of-3">
-                                <div className="image__type">
-                                    <div className="image__type--left"><i className="fa fa-file-image-o"></i></div>
-                                    <div className="image__type--right">
-                                        <h4 className="image__type--heading">High resolution images</h4>
-                                        <p className="image__type--desc">PNG, JPG, JPEG</p>
+                        <div className="media__hint">
+                            <div className="row">
+                                <div className="col-1-of-3">
+                                    <div className="image__type">
+                                        <div className="image__type--left"><i className="fa fa-file-image-o"></i></div>
+                                        <div className="image__type--right">
+                                            <h4 className="image__type--heading">High resolution images</h4>
+                                            <p className="image__type--desc">PNG, JPG, JPEG</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div className="col-1-of-3">
-                                <div className="image__type">
-                                    <div className="image__type--left"><i className="fa fa-file-video-o"></i></div>
-                                    <div className="image__type--right">
-                                        <h4 className="image__type--heading">Animated GIFs</h4>
-                                        <p className="image__type--desc">400x300, 800x600</p>
+                                <div className="col-1-of-3">
+                                    <div className="image__type">
+                                        <div className="image__type--left"><i className="fa fa-file-video-o"></i></div>
+                                        <div className="image__type--right">
+                                            <h4 className="image__type--heading">Animated GIFs</h4>
+                                            <p className="image__type--desc">400x300, 800x600</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <div className="col-1-of-3">
-                                <div className="image__type">
-                                    <div className="image__type--left"><i className="fa fa-video-camera"></i></div>
-                                    <div className="image__type--right">
-                                        <h4 className="image__type--heading">Videos</h4>
-                                        <p className="image__type--desc">MP4, 4:3, 24 seconds</p>
+                                <div className="col-1-of-3">
+                                    <div className="image__type">
+                                        <div className="image__type--left"><i className="fa fa-video-camera"></i></div>
+                                        <div className="image__type--right">
+                                            <h4 className="image__type--heading">Videos</h4>
+                                            <p className="image__type--desc">MP4, 4:3, 24 seconds</p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

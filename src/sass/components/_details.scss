@@ -11,6 +11,10 @@
     transform: translate(-50%,-50%);
     transition: all 3s ease-in;
 
+    @include respond(phone){
+        width: 80vw;
+    }
+
     .details__heading {
         color: $color-black-2;
         font-weight: 900;

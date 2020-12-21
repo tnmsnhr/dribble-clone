@@ -56,9 +56,13 @@
                 object-fit: cover;
                 
             }
+
+            @include respond(big-phone){
+                width: 100%;
+                display: block !important;
+                text-align: center;
+            }
         }
-
-
         .button__area {
             float: left;
             width: 70%;
@@ -78,8 +82,40 @@
                 display: none;
             }
 
-            
+            .btn-default {
+                margin-right: 0;
+            }
+
+            @include respond(big-phone){
+                width: 100%;
+                display: block !important;
+                text-align: center;
+                margin-bottom: 3rem;
+
+                .btn {
+                    margin-bottom: 10px;
+                }
+            }
         }
 
+        .upload {
+
+            @include respond(tab-land){
+                margin-bottom: 1.5rem !important;
+            }
+
+            @include respond(big-phone){
+                margin-bottom: 1rem !important;
+            }
+        }
+
+        @include respond(phone){
+            padding: 30px;
+        }
+
+    }
+
+    @include respond(big-phone){
+        width: 80%;
     }
 }

@@ -44,7 +44,7 @@ class Profile extends Component {
                             <div className="row">
                                 {this.props.userDetails.profileImageUrl ?
                                 <img src={this.props.userDetails.profileImageUrl}/> :
-                                <img src="https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg" /> }
+                                <img className="hero__image" src="https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg" /> }
                                 <h1 className="display-name">{this.props.userDetails.name}</h1>
                                 <h1 className="designation">{this.props.userDetails.introduction}</h1>
                                 <h1 className="email-id">{this.props.userDetails.email}</h1>

@@ -2,6 +2,7 @@
     .upload__image {
         position: relative;
         height: 100vh;
+        margin-bottom: 150px;
 
         .upload__image-preview {
             width: 100%;
@@ -12,7 +13,6 @@
             transition-delay: 2s;
 
             & img {
-                
                 width: 100%;
                 height: 100%;
                 border-radius: 10px;
@@ -84,6 +84,19 @@
             .row .col-1-of-3:not(:last-child){
                 border-right: 1px solid $color-grey-light;
             }
+
+            @include respond(tab-land){
+                .media__hint {
+                    display: none;
+                }
+
+            }
+
+            @include respond(tab-port){
+                & {
+                    height: 70vh !important;
+                }
+            }
         }
     
         &-hint {
@@ -117,6 +130,22 @@
     
             &:hover {
                 color: $color-primary;
+            }
+        }
+
+        @include respond(tab-land){
+            .upload__image-desc {
+                width: 80%;
+                margin: 0 auto;
+                margin-bottom: 100px !important;
+            }
+        }
+
+        @include respond(phone){
+            .upload__image-desc {
+                width: 100%;
+                margin: 0 auto;
+                margin-bottom: 100px !important;
             }
         }
     }

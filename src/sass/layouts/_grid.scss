@@ -50,10 +50,22 @@
 
     .col-1-of-3 {
         width: calc((100% - 2*#{$gutter-horizontal})/3);
+
+        @include respond(tab-land) {
+            width: 100% !important;
+            margin-bottom: $gutter-vertical;
+        }
     }
 
     .col-2-of-3 {
         width: calc(2*((100% - 2*#{$gutter-horizontal})/3) + #{$gutter-horizontal});
+
+        @include respond(tab-land) {
+            width: 100% !important;
+            margin-bottom: $gutter-vertical;
+        }
+
+       
     }
 
     .col-1-of-4 {
@@ -84,6 +96,7 @@
 
     .col-1-of-5 {
         width: calc((100% - 4*#{$gutter-horizontal})/5);
+
     }
 
     .col-2-of-5 {

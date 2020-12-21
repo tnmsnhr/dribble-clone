@@ -1,10 +1,42 @@
 .footer__area {
     width: 100%;
     background-color: lighten($color-grey-light,2);
-    padding: 50px 0 50px 0;
+    padding: 50px 0 10px 0;
     font-weight: 400;
 
     .footer__content {
+
+        .footer__top {
+            margin-bottom: 3rem;
+
+            @include respond(big-phone){
+
+                width: 100% !important;
+                height: auto !important;
+
+                .nav__area {
+                    width: 100% !important;
+                    &:not(:last-child){
+                        margin-right: 1rem !important;
+                    }
+                    
+                }
+                
+            }
+        }
+
+        .footer__logo {
+            @include respond(tab-port){
+                font-size: 0.8rem !important;
+            }
+            
+            @include respond(big-phone){
+                width: 100% !important;
+                display: block;
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+        }
 
         .logo__text {
             font-weight: 500;
@@ -32,6 +64,13 @@
                     color: $color-black-2;
                 }
             }
+
+            @include respond(tab-port) {
+                font-size: 0.8rem !important;
+                line-height: 2rem;
+
+            }
+
         }
 
         .bottom__footer {
@@ -56,6 +95,12 @@
                 font-weight: bold;
                 color: $color-black;
                 margin-right: 10px;
+            }
+
+            @include respond(tab-land){
+                div {
+                    margin-bottom: 5px;
+                }
             }
         }
     }
