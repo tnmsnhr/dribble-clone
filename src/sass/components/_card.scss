@@ -13,10 +13,12 @@
 
     @include respond(big-phone){
         height: 200px;
+        display: block !important;
     }
 
     @include respond(phone){
         height: 300px;
+        display: block !important;
     }
 }
 
@@ -95,6 +97,10 @@
     &:hover .image__details {
         opacity: 1;
         visibility: visible;
+    }
+
+    @include respond(phone){
+        display: block !important;
     }
 }
 

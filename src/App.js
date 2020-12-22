@@ -40,7 +40,7 @@ class App extends Component {
       <>
         <Switch>
           {this.props.location.pathname.includes('/auth/') ? null:<Navbar />}
-          {/* <Route path="/" exact component={Filter}/> */}
+          <Route path="/" exact component={Filter}/>
 
           <Route path="/user/:uid" component={Profile}/>
           <Route path="/user/:filter" exact component={ShotLists}/>
@@ -51,10 +51,11 @@ class App extends Component {
           {/* <Route path="/following/" component={Filter}/> */}
 
           <Route path="/search/:filter" component={Search}/>
-          {/* <Route path="/search/:filter" component={Filter}/> */}
+          <Route path="/search/:filter" component={Filter}/>
           <Route path="/search/:filter" component={ShotLists}/>
 
           {/* <Route path="/shots/shot-details/:id" exact component={ShotLists}/> */}
+          <Route path="/following/:filter" exact component={Filter}/>
           <Route path="/following/:filter" exact component={ShotLists}/>
           <Route path="/account/profile" exact component={EditProfile}/>
           <Route path="/" exact component={ShotLists}/>
@@ -72,8 +73,8 @@ class App extends Component {
         <>
           <Switch>
             <Navbar />
-            {/* <Route path="/" exact component={Filter}/>
-            <Route path="/following/" component={Filter}/> */}
+              <Route path="/" exact component={Filter}/>
+              <Route path="/following/" component={Filter}/>
             
             <Route path="/user/account/profile" component={EditProfile}/>
             {/* <Route path="/user/account/profile" component={Profile}/> */}

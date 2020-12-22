@@ -24,7 +24,7 @@ class Search extends Component {
                             <input className="search__input-field" defaultValue={this.props.match.params.filter} onKeyDown={this.searchHandler}/>
                         </div>
                         <h1 className="search__item-name margin-bottom-sm">{this.props.match.params.filter}</h1>
-                        <p>A logo is a graphic mark, emblem, symbol or stylized name used to identify a company, organization, product, or brand.</p>
+                        
 
                         <div className="related__keywords margin-top-md">
                             <ul className="keyword__list">

@@ -97,6 +97,12 @@
     .col-1-of-5 {
         width: calc((100% - 4*#{$gutter-horizontal})/5);
 
+        @include respond(tab-land){
+            &:last-child{
+                margin-right: 0 !important;
+            }
+        }
+
     }
 
     .col-2-of-5 {

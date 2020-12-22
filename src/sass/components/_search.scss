@@ -12,7 +12,7 @@
         }
 
         .search-results-details {
-            width: 650px;
+            width: 100%;
             position: absolute;
             display: inline-block;
             left: 50%;
@@ -24,7 +24,7 @@
                 width: 100%;
 
                 .search__input-field {
-                    width: 100%;
+                    width: 50%;
                     padding: 15px;
                     padding-left:50px ;
                     outline: none;
@@ -38,6 +38,14 @@
                     &::placeholder {
                         color: red;
                     }
+
+                    @include respond(big-phone){
+                        width: 80% !important;
+                        margin: 0 auto;
+                        margin-bottom: 10px;
+                    }
+
+                    
                 }
 
                 i {
@@ -48,6 +56,7 @@
                     color: $color-grey;
                     padding: 15px;
                 }
+
             }
 
             .search__item-name {

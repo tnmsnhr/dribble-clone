@@ -20,3 +20,4 @@ Tried to create replica of **dribbble.com**
 6. Search basis on tag
 6. Filter based on tag
 7. You can edit your shot
+8. Now you can share your shot at Facebook & Pinterest
