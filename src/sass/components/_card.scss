@@ -3,6 +3,10 @@
     width: 100%;
     position: relative;
 
+    @include respond(big-desktop){
+        height: 300px;
+    }
+
     @include respond(tab-land){
         height: 350px;
     }

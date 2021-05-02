@@ -69,7 +69,7 @@ class NewShots extends Component {
     }
 
     deleteHandler = ()=>{
-        this.setState({imageUrl:''})
+        this.setState({imageUrl:'',file:{}})
     }
 
     onCancelHandler=()=>{

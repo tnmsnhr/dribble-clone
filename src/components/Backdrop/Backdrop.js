@@ -8,9 +8,9 @@ const Backdrop = (props) => {
     }
 
     return (
-        <div>
+        <>
             {props.show ? <div className='backdrop' onClick={props.clicked? props.clicked:clickHandler}></div>:null}
-        </div>
+        </>
     )
     
 }

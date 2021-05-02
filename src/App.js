@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Suspense} from 'react';
 import './css/main.css';
 import Navbar from './components/Navbar/Navbar';
 import ShotLists from './containers/ShotLists/ShotLists';
@@ -7,15 +7,16 @@ import { Route, Redirect } from 'react-router-dom';
 import NewShots from './containers/NewShots/NewShots';
 import Switch from 'react-bootstrap/esm/Switch';
 import Popup from './components/Popup/Popup';
-import Login from './containers/Auth/Login';
-import SignUp from './containers/Auth/SignUp';
 import {connect} from 'react-redux';
 import {authCheckState} from './store/actions/auth'
 import {withRouter} from 'react-router-dom';
 import Profile from './containers/ProfilePage/ProfilePage';
-import EditProfile from './containers/EditProfile/EditProfile';
 import Search from './containers/Search/Search';
 import Footer from './components/Footer/Footer';
+import Spinner from './components/Spinner/Spinner';
+const EditProfile = React.lazy(() => import('./containers/EditProfile/EditProfile'));
+const Login = React.lazy(() => import('./containers/Auth/Login'));
+const SignUp = React.lazy(() => import('./containers/Auth/SignUp'));
 
 class App extends Component {
 
@@ -45,7 +46,7 @@ class App extends Component {
           <Route path="/user/:uid" component={Profile}/>
           <Route path="/user/:filter" exact component={ShotLists}/>
           <Route path="/user/:filter/liked-shots" exact component={ShotLists}/>
-          {this.props.isLoggedIn ? null: <><Route path="/auth/sign-in" exact component={Login}/><Route path="/auth/sign-up" exact component={SignUp}/></>}
+          {this.props.isLoggedIn ? null: <><Route path="/auth/sign-in" exact render={()=><Suspense fallback={<Spinner/>}><Login/></Suspense>}/><Route path="/auth/sign-up" exact component={SignUp}/></>}
 
           <Route path="/shots/shot-details/:id/:uid" exact component={Popup}/>
           {/* <Route path="/following/" component={Filter}/> */}

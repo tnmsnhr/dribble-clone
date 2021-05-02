@@ -122,7 +122,7 @@ class EditProfile extends Component {
                             </div>
 
                             <button className="btn btn-primary">Update</button>
-                            <button className="btn btn-default" >Cancel</button>
+                            <button className="btn btn-default" onClick={()=>this.props.history.goBack()}>Cancel</button>
                         </form>}
                     </div>
                 </div>}

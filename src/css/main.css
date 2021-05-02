@@ -46,7 +46,8 @@
 
 html {
   font-size: 16px;
-  scroll-behavior: smooth; }
+  scroll-behavior: smooth;
+  position: relative; }
 
 body {
   font-family: "Lato";
@@ -78,6 +79,9 @@ body {
   height: 200px;
   width: 100%;
   position: relative; }
+  @media (min-width: 1600px) {
+    .shot__content {
+      height: 300px; } }
   @media (max-width: 1200px) {
     .shot__content {
       height: 350px; } }
@@ -872,6 +876,9 @@ body {
   40% {
     box-shadow: 0 2.5em 0 0; } }
 
+.spinner__container {
+  height: 100vh; }
+
 .popup__area {
   border-top-left-radius: 20px;
   position: relative;
@@ -1170,93 +1177,119 @@ body {
           width: 100%;
           display: inline-block;
           text-align: center; } }
+    .login__form-right .form__logo {
+      display: none; }
+      @media (max-width: 1060px) {
+        .login__form-right .form__logo {
+          display: block;
+          text-align: center;
+          margin-top: 2rem;
+          font-family: 'Grand Hotel', cursive;
+          font-size: 2.5rem;
+          font-weight: 400; }
+          .login__form-right .form__logo a {
+            text-decoration: none;
+            color: #222222; } }
 
-.signup__form::after {
-  content: "";
-  clear: both;
-  display: table; }
-
-.signup__form-left {
-  float: left;
-  padding: 80px;
-  width: 40%;
-  height: 100vh;
-  background-color: #f7bed4;
-  margin: 0 auto; }
-  .signup__form-left .logo a {
-    font-family: 'Grand Hotel', cursive;
-    font-size: 2.5rem;
-    color: #EA4C89;
-    text-decoration: none; }
-  .signup__form-left h1 {
-    font-weight: 900;
-    font-size: 1.8rem;
-    color: #3D3D3D;
-    opacity: 0.6; }
-  @media (max-width: 1200px) {
-    .signup__form-left h1 {
-      font-size: 1.5rem; }
-    .signup__form-left {
-      padding: 40px !important; } }
-  @media (max-width: 1060px) {
-    .signup__form-left {
-      display: none; } }
-
-.signup__form-right {
-  float: right;
-  width: 60%;
-  margin: 0 auto;
-  border-radius: 10px;
-  background-color: #fff;
-  height: 100vh;
+.signup__form {
   position: relative; }
-  .signup__form-right .form__content {
+  .signup__form::after {
+    content: "";
+    clear: both;
+    display: table; }
+  .signup__form-left {
+    float: left;
+    padding: 80px;
+    width: 40%;
+    height: 100vh;
+    background-color: #f7bed4;
+    margin: 0 auto; }
+    .signup__form-left .logo a {
+      font-family: 'Grand Hotel', cursive;
+      font-size: 2.5rem;
+      color: #EA4C89;
+      text-decoration: none; }
+    .signup__form-left h1 {
+      font-weight: 900;
+      font-size: 1.8rem;
+      color: #3D3D3D;
+      opacity: 0.6; }
+    @media (max-width: 1200px) {
+      .signup__form-left h1 {
+        font-size: 1.5rem; }
+      .signup__form-left {
+        padding: 40px !important; } }
+    @media (max-width: 1060px) {
+      .signup__form-left {
+        display: none; } }
+  .signup__form-right {
+    float: right;
     width: 60%;
     margin: 0 auto;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%); }
-    .signup__form-right .form__content .signup__link {
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      font-weight: 400;
-      z-index: 10; }
-      .signup__form-right .form__content .signup__link a {
-        text-decoration: none;
-        color: #EA4C89;
-        font-weight: bold; }
-    .signup__form-right .form__content .heading {
-      color: #222222;
-      font-weight: 900;
-      border-bottom: 1px solid #c9c9c9;
-      padding-bottom: 10px; }
-  @media (min-width: 1201px) {
-    .signup__form-right .signup__link {
-      bottom: 4em !important; } }
-  @media (max-width: 1200px) {
-    .signup__form-right .form__group {
-      margin-bottom: 1rem; } }
-  @media (max-width: 1060px) {
-    .signup__form-right {
-      width: 100%; }
-      .signup__form-right .form__content {
-        width: 60%; }
-      .signup__form-right .btn {
-        margin-top: 1rem;
-        width: 100%;
-        margin-bottom: 3rem; }
-      .signup__form-right .form__group {
-        margin-bottom: 1rem; }
-      .signup__form-right .signup__link {
-        position: unset;
-        width: 100%;
-        display: inline-block;
-        text-align: center; } }
-  @media (max-width: 600px) {
+    border-radius: 10px;
+    background-color: #fff;
+    height: 100vh;
+    position: relative; }
     .signup__form-right .form__content {
-      width: 70%; } }
+      width: 60%;
+      margin: 0 auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%); }
+      .signup__form-right .form__content .signup__link {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        font-weight: 400;
+        z-index: 10; }
+        .signup__form-right .form__content .signup__link a {
+          text-decoration: none;
+          color: #EA4C89;
+          font-weight: bold; }
+      .signup__form-right .form__content .heading {
+        color: #222222;
+        font-weight: 900;
+        border-bottom: 1px solid #c9c9c9;
+        padding-bottom: 10px; }
+    @media (min-width: 1201px) {
+      .signup__form-right .signup__link {
+        bottom: 4em !important; } }
+    @media (max-width: 1200px) {
+      .signup__form-right .form__group {
+        margin-bottom: 1rem; } }
+    @media (max-width: 1060px) {
+      .signup__form-right {
+        width: 100%; }
+        .signup__form-right .form__content {
+          width: 60%; }
+        .signup__form-right .btn {
+          margin-top: 1rem;
+          width: 100%;
+          margin-bottom: 3rem; }
+        .signup__form-right .form__group {
+          margin-bottom: 1rem; }
+        .signup__form-right .signup__link {
+          position: unset;
+          width: 100%;
+          display: inline-block;
+          text-align: center; } }
+    @media (max-width: 600px) {
+      .signup__form-right .form__content {
+        width: 70%; } }
+    .signup__form-right .form__logo {
+      display: none; }
+      @media (max-width: 1060px) {
+        .signup__form-right .form__logo {
+          display: block;
+          text-align: center;
+          margin-top: 2rem;
+          font-family: 'Grand Hotel', cursive;
+          font-size: 2.5rem;
+          font-weight: 400; }
+          .signup__form-right .form__logo a {
+            text-decoration: none;
+            color: #222222; } }
 
 .profile__area {
   width: 100%;
@@ -1428,7 +1461,7 @@ body {
   background-color: #fff;
   border-radius: 10px;
   width: 600px;
-  position: fixed;
+  position: absolute;
   left: 50%;
   top: 5%;
   transform: translate(-50%);

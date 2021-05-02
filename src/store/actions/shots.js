@@ -72,8 +72,9 @@ export const fetchShots = (filterCriteria,pathname) =>{
                     })
         }else {
 
-            if(filterCriteria==undefined)
+            if(filterCriteria==undefined){
                 filterCriteria="all"
+            }
             let unsubscribe;
 
             unsubscribe = projectFirestore.collection('shots')

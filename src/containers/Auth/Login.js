@@ -41,6 +41,7 @@ class Login extends Component {
                     <h1>Discover the world's top Designers & Creatives.</h1>
                 </div>
                 <div className="login__form-right">
+                    <h2 className="form__logo"><Link to="/">terribbble</Link></h2>
                     <div className="form__content">
                         <div className="signup__link">Not a member? <Link to="/auth/sign-up">Sign up now</Link></div>
                         <div className="row">

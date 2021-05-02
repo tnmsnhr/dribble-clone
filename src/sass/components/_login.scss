@@ -121,6 +121,24 @@
                 text-align: center;
             }
         }
+
+        .form__logo{
+            display: none;
+    
+            @include respond(tab-port){
+                display: block;
+                text-align: center;
+                margin-top: 2rem;
+                font-family: 'Grand Hotel', cursive;
+                font-size: 2.5rem;
+                font-weight: 400;
+
+                a{
+                    text-decoration: none;
+                    color: $color-black-2;
+                }
+            }
+        }
         
     }
 

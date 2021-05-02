@@ -7,6 +7,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Navigation, Pagination, Scrollbar, A11y } from 'swiper';
 import 'swiper/swiper.scss';
 import 'swiper/components/pagination/pagination.scss';
+import { Transition, animated } from 'react-spring/renderprops'
+
 SwiperCore.use([Navigation, Pagination, Scrollbar, A11y]);
 
 
@@ -46,9 +48,21 @@ class Filter extends Component {
     
 
     render() {
-        console.log("rendered")
 
-        let filterContent= <Subfilter in={this.state.showFilter}/>
+        let filterContent= <Transition
+            native
+            items={this.state.showFilter}
+            from={{ overflow: 'hidden', height: 0 }}
+            enter={[{ height: 'auto' }]}
+            leave={{ height: 0 }}>
+            {show =>
+            show && (props => <animated.div style={props}><Subfilter in={this.state.showFilter}></Subfilter></animated.div>)
+            }
+        </Transition>
+        
+        
+        
+        
 
         return (
             <div className="container">
@@ -119,7 +133,7 @@ class Filter extends Component {
                                         </li>
                                         </SwiperSlide>
                                         </Swiper>
-                                        <div class="swiper-pagination"></div>
+                                        <div className="swiper-pagination"></div>
                                     </ul>
 
                                     <ul className="category-lists normal-lists">
@@ -148,7 +162,7 @@ class Filter extends Component {
                                             <NavLink to={this.state.link+"typography"} activeClassName="activeFilter">Typography</NavLink>
                                         </li>
                                         <li className='category'>
-                                            <NavLink to={this.state.link+"web-design"} activeClassName="activeFilter">Web Design</NavLink>
+                                            <NavLink to={this.state.link+"web-design"} activeClassName="activeFilter">Web</NavLink>
                                         </li>
                                     </ul>
                                 </div>
