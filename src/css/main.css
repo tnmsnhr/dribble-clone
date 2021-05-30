@@ -366,9 +366,9 @@ body {
         border-radius: 10px;
         padding: 30px 0px;
         background-color: #fff;
-        position: relative;
-        z-index: 10;
-        top: 10px;
+        position: fixed;
+        z-index: 50000;
+        top: 4rem;
         right: 6rem;
         opacity: 0;
         visibility: hidden;
